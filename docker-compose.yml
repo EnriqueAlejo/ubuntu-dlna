@@ -1,1 +1,23 @@
+version: '3'
 
+services:
+  owncast:
+    image: owncast/owncast:latest
+    ports:
+      - "8080:8080"
+      - "1935:1935"
+    volumes:
+      - owncast-config:/app/config
+      - owncast-data:/app/data
+  dlna:
+    image: ubuntu-dlna
+    ports:
+      - "1930:1930/udp"
+      - "8230:8230/tcp"
+    volumes:
+      - dlna-media:/media/dlNA
+
+volumes:
+  owncast-config:
+  owncast-data:
+  dlna-media:
